@@ -1,0 +1,60 @@
+package com.user.dao.Impl;
+
+import java.util.List;
+
+
+
+
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.base.util.EntitytoString;
+import com.user.dao.UserDao;
+import com.user.model.User;
+
+@Repository("userDao")
+public class UserDaoImpl  implements UserDao{
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+	@Override
+	public List<Map<String, Object>> getList() { 
+		String sql = "select * from User";
+		@SuppressWarnings("unused")
+		Object[] params = new Object[]{""};
+		 List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
+		return list;
+	}
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+	
+	@Override
+	public void insertTo(Object[] obj) {
+		String sql = "insert into User(usercode,password,states) values(?,?,?)";
+		jdbcTemplate.update(sql, obj);
+		
+	}
+	@Override
+	public User getByPassword(String userCode, String password) {
+		String sql = "select * from User where usercode = ? and password = ?";
+		List<Map<String, Object>> list= jdbcTemplate.queryForList(sql, new Object[]{userCode,password});
+		if(list.size() >0){
+			@SuppressWarnings("unchecked")
+			List<User> userList = EntitytoString.getEntitys(list, User.class);
+			return userList.get(0);
+		}else{
+			return null;
+		}
+			
+		
+	}
+	
+}

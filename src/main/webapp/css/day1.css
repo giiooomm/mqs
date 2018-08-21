@@ -1,0 +1,48 @@
+
+div{
+	border:0px solid red;
+	background-color: skyblue;
+	width:500px ;
+	height: 400px;
+	float: left;
+}
+
+#titleimg{
+	border:0px solid red;
+	width:1900px ;
+	height: 105px;
+}
+
+#lfet1{
+	border: 0px solid red;
+	width: 40%;
+	float: left;
+}
+#father1{
+	border: 0px solid red;
+	width:1900px ;
+}
+
+#right1{
+	border: 0px solid red;
+	width: 33.3%;
+	float: left;
+}
+#title2{
+	border: 1px solid blue;
+	background-color:  aliceblue;
+	width: 1900px;
+	height: 50px;
+}
+
+.title2{
+	display:  inline;
+	font-size:  large;
+	color:#0000FF;
+	margin: 40px;
+}
+#down{
+	border: 1px solid blue;
+	width: 1900px; 
+	background-image: url(${pageContext.request.contextPath}/images/5.png");
+}

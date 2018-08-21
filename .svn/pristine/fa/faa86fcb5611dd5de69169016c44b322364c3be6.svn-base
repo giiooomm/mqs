@@ -1,0 +1,19 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = git@github.com.giiooomm/mys.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[remote "origin2"]
+	url = https://github.com/giiooomm/mys.git
+	fetch = +refs/heads/*:refs/remotes/origin2/*
+[branch "master"]
+	remote = origin2
+	merge = refs/heads/master
+[gui]
+	wmstate = normal
+	geometry = 1061x563+435+269 233 255

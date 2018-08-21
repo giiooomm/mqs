@@ -1,0 +1,13 @@
+package com.user.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import com.user.model.User;
+
+public interface UserDao {
+	List<Map<String, Object>> getList();
+	void insertTo(Object[] obj);
+	User getByPassword(String userCode, String password);
+	Long verfiCode(String userCode);
+}

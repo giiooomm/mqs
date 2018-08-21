@@ -1,0 +1,53 @@
+log4j.rootLogger=DEBUG,console,error_log,all_log
+
+
+#\u63a7\u5236\u53f0\u8f93\u51fa
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.Threshold=DEBUG
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=[LIFE] [%d{MM/dd HH:mm:ss.SSS}] [%-5p] [%t] [%l] - %m%n
+
+
+#\u9519\u8bef\u65e5\u5fd7\uff08\u5168\u90e8error\u4fe1\u606f\uff09
+log4j.appender.error_log.Threshold=ERROR
+log4j.appender.error_log=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.error_log.File=/usr/local/logs/hsd-life-web/error.log
+log4j.appender.error_log.DatePattern='.'yyyy-MM-dd'.log'
+log4j.appender.error_log.layout=org.apache.log4j.PatternLayout
+log4j.appender.error_log.layout.ConversionPattern=[LIFE] [%d{MM/dd HH:mm:ss.SSS}] [%-5p] [%t] [%l] - %m%n
+
+
+#\u5168\u90e8\u65e5\u5fd7\uff08\u5168\u90e8\u65e5\u5fd7\uff09
+log4j.appender.all_log.Threshold=DEBUG
+log4j.appender.all_log=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.all_log.File=/usr/local/logs/hsd-life-web/all.log
+log4j.appender.all_log.DatePattern='.'yyyy-MM-dd'.log'
+log4j.appender.all_log.layout=org.apache.log4j.PatternLayout
+log4j.appender.all_log.layout.ConversionPattern=[LIFE] [%d{MM/dd HH:mm:ss.SSS}] [%-5p] [%t] [%l] - %m%n
+
+
+#\u65e5\u5fd7\u8fc7\u6ee4
+log4j.logger.com.heshidai=DEBUG
+log4j.logger.org.springframework=INFO
+log4j.logger.org.springframework.remoting.caucho=INFO
+log4j.logger.org.apache.commons=INFO
+log4j.logger.org.apache.shiro=INFO
+log4j.logger.httpclient.wire.content=ERROR 
+log4j.logger.httpclient.wire.header=ERROR
+
+<!-- -->
+<logger name="jdbc.sqlonly" level="WARN"/>  
+<logger name="jdbc.sqltiming" level="INFO"/>  
+<logger name="jdbc.resultsettable" level="INFO"/>  
+<logger name="jdbc.resultset" level="WARN"/>  
+<logger name="jdbc.connection" level="WARN"/>  
+<logger name="jdbc.audit" level="WARN"/>
+
+
+<!-- \u6216\u8005\u5173\u95ED\u4E0D\u5FC5\u8981\u7684 -->
+<logger name="jdbc.connection" level="OFF" />
+<logger name="jdbc.audit" level="OFF" />
+<logger name="jdbc.resultset" level="OFF" />
+<logger name="jdbc.sqlonly" level="OFF" />
+<logger name="jdbc.sqltiming" level="INFO" />
+<logger name="jdbc.resultsettable" level="INFO"/>
