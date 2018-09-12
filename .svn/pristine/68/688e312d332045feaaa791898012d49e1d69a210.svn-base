@@ -1,0 +1,42 @@
+package com.blog.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.base.util.EntitytoString;
+import com.base.util.JDBCUtil;
+import com.blog.model.Blog;
+import com.user.model.User;
+
+@Repository
+public class BlogDao{
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	public void save(Blog blog) {
+		StringBuffer sql = new StringBuffer(64);
+		sql.append("insert into blog_theme(id,title,content,create_time,author) values(?,?,?,?,?)");
+		Object[] obj = JDBCUtil.modelToObject(blog, Blog.class);
+		
+		jdbcTemplate.update(sql.toString(),obj);
+		
+	}
+
+	public List<Blog> qryBlogList(Blog blog) {
+		StringBuffer sql = new StringBuffer(64);
+		sql.append("select id,title,content,create_time,author from blog_theme");
+		List<Map<String, Object>> list= jdbcTemplate.queryForList(sql.toString());
+		if(list.size() >0){
+			@SuppressWarnings("unchecked")
+			List<Blog> blogList = EntitytoString.getEntitys(list, Blog.class);
+			return blogList;
+		}else{
+			return null;
+		}
+		
+	}
+}

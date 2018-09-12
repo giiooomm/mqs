@@ -1,0 +1,23 @@
+package com.blog.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.base.util.JDBCUtil;
+import com.blog.model.Blog;
+
+@Repository
+public class BlogDao{
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	public void save(Blog blog) {
+		StringBuffer sql = new StringBuffer(64);
+		sql.append("insert into blog_theme(id,title,content,create_time,author) values(?,?,?,?,?)");
+		Object[] obj = JDBCUtil.modelToObject(blog, Blog.class);
+		
+		jdbcTemplate.update(sql.toString(),obj );
+		
+	}
+}

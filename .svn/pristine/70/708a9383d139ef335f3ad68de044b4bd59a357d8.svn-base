@@ -1,0 +1,13 @@
+package com.user.Service;
+
+import com.user.model.User;
+
+public interface UserService {
+
+	User getUser(String userCode, String password);
+
+	void insertTo(String userCode, String password);
+
+	boolean verfiCode(String userCode);
+	
+}
