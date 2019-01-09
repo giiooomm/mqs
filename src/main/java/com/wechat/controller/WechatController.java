@@ -4,15 +4,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.thoughtworks.xstream.XStream;
 import com.wechat.model.MessageAns;
+import com.wechat.util.HttpUtilsss;
 import com.wechat.util.MessageUtil;
 import com.wechat.util.SignUtil;
 
@@ -66,10 +70,18 @@ public class WechatController {
         for(String key : map.keySet()){
         	System.out.println(key+":"+map.get(key));
         }
+       
         MessageAns message = new MessageAns();
+        if( map.get("Content").indexOf("单") >= 0){
+        	String text = HttpUtilsss.getKuaidi();
+        	message.setContent(text);
+        }else{
+        	message.setContent("我收到了你的消息!");
+        }
+        
         message.setToUserName(map.get("FromUserName"));
         message.setFromUserName(map.get("ToUserName"));
-        message.setContent("我收到了你的消息!");
+        
         message.setMsgType("text");
         message.setCreateTime((Long.parseLong(map.get("CreateTime"))));
         XStream xs = MessageUtil.getXstream();
