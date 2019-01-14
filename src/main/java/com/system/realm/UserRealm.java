@@ -41,7 +41,7 @@ public class UserRealm extends AuthorizingRealm {
 		// 获取基于用户名和密码的令牌
         // 实际上这个authcToken是从AdminController里面currentUser.login(token)传过来的
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-
+        token.setRememberMe(true); 
         User user = new User();
         user.setUsercode(token.getUsername());
         user.setPassword(new String(token.getPassword()));

@@ -1,13 +1,11 @@
 package com.blog.controller;
 
-import java.io.IOException;
 import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -17,23 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.base.util.DateUtil;
-import com.base.util.EhcacheUtil;
 import com.base.util.JsonUtil;
-import com.base.util.RedisCacheManager;
 import com.base.util.RequestUtil;
 import com.blog.model.Blog;
 import com.blog.service.BlogService;
-import com.wechat.dao.TokenDao;
 @Controller
 @RequestMapping("blog")
 @Scope("prototype")
 public class BlogController {
   @Autowired
-  private BlogService blogService;
-  @Autowired
-  private RedisCacheManager redisCacheManager;
-  @Autowired
-  private TokenDao tokenDao;
+  private BlogService blogService;	
 	
   @RequestMapping(value="save",method=RequestMethod.POST,produces = "text/html;charset=UTF-8")	
   @ResponseBody
@@ -104,41 +95,5 @@ public class BlogController {
 	  	 return JsonUtil.getResultJson("刪除成功！");
 	  else
 		  return JsonUtil.getResultJson("刪除失败！");
-  }
-  
-  @RequestMapping(value="testRedis",method=RequestMethod.GET,produces = "text/html;charset=UTF-8")
-  @ResponseBody
-  public void testRedis(ServletRequest request,Model model){
-	  
-  	  //redisCacheManager.set("dogdog", "1326465");
-  	  String ss = (String) redisCacheManager.get("pigpig222");
-  	 
-  	  System.out.println(ss);
-  }
-  
-  @RequestMapping(value="testEhcache",method=RequestMethod.GET,produces = "text/html;charset=UTF-8")
-  @ResponseBody
-  public void testEhcache(ServletRequest request,Model model,ServletResponse response){
-	  
-  	  //redisCacheManager.set("dogdog", "1326465");
-  	  //String ss = (String) redisCacheManager.get("pigpig222");
-  	  //System.out.println(ss);
-	  EhcacheUtil.addCache("lalala", "hehe");
-	  String value = EhcacheUtil.getStringCache("lalala");
-	  if(StringUtils.isNotBlank(value)){
-		  try {
-			response.getWriter().write(value);
-			return;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	  }
-	  try {
-		response.getWriter().write("没有哦");
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
   }
 }

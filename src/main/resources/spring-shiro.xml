@@ -73,9 +73,15 @@
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="userRealm" />
 		<!-- 使用下面配置的缓存管理器 -->
-		<property name="cacheManager" ref="cacheManager" />
-		<property name="sessionManager" ref="sessionManager" />
+		<!--<property name="cacheManager" ref="cacheManager" />-->
+		<!--<property name="sessionManager" ref="sessionManager" />-->
+		<property name="cacheManager" ref="shiroEhcacheManager"></property>
 	</bean>
+	
+	 <!-- 用户授权信息Cache, 采用EhCache -->
+     <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+         <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"></property>
+     </bean>
 	<!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->
 	<bean
 		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">

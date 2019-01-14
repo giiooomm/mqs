@@ -1,0 +1,12 @@
+package com.base.util;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class DateUtil {
+  public static String getCurrentDate(){
+	  Date currentDate = new Date();
+	  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	  return formatter.format(currentDate);
+  }
+}

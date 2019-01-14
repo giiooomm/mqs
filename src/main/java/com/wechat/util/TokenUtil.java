@@ -102,6 +102,7 @@ public class TokenUtil {
 	}
 	
 	public static void main(String[] args) throws IOException{
+		
 		System.out.println(getToken());
 	}
 }
