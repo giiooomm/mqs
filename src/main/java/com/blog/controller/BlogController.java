@@ -79,7 +79,11 @@ public class BlogController {
   @RequestMapping(value="toUpdate",method=RequestMethod.GET)
   public String toUpdate(ServletRequest request,Model model){
 	  Long id = new Long(request.getParameter("id"));
+	  String myName = request.getParameter("myName");
+	  System.out.println(myName==null?"nonononono":myName);
+	  System.out.println(myName==null?"nonononono":myName);
 	  Blog blog = blogService.qryBlogById(id);
+	  
 	  model.addAttribute("blog", blog);
   	return "blog/blog_edit";
   }

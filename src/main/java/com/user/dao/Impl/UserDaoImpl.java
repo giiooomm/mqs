@@ -16,7 +16,7 @@ import com.base.util.EntitytoString;
 import com.user.dao.UserDao;
 import com.user.model.User;
 
-@Repository("userDao")
+@Repository
 public class UserDaoImpl  implements UserDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

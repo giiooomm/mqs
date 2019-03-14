@@ -14,6 +14,9 @@
 		<!-- redis 版本 -->
 	    <redis.version>2.9.0</redis.version>
 	    <spring.redis.version>1.6.2.RELEASE</spring.redis.version>
+	    <mybatis.version>3.2.6</mybatis.version>  
+        <!-- log4j日志文件管理包版本 -->  
+        <slf4j.version>1.7.7</slf4j.version>  
 	</properties>
 
 
@@ -38,6 +41,13 @@
 			<artifactId>spring-jms</artifactId>
 			<version>${springframework}</version>
 		</dependency>
+		
+		<!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->  
+        <dependency>  
+            <groupId>commons-dbcp</groupId>  
+            <artifactId>commons-dbcp</artifactId>  
+            <version>1.2.2</version>  
+        </dependency>  
 
 		<!-- xbean 如<amq:connectionFactory /> -->
 		<dependency>
@@ -191,6 +201,37 @@
              </exclusion>
            </exclusions>
         </dependency>
+        
+         <!-- mybatis核心包 -->  
+        <dependency>  
+            <groupId>org.mybatis</groupId>  
+            <artifactId>mybatis</artifactId>  
+            <version>${mybatis.version}</version>  
+        </dependency>  
+        <!-- mybatis/spring包 -->  
+        <dependency>  
+            <groupId>org.mybatis</groupId>  
+            <artifactId>mybatis-spring</artifactId>  
+            <version>1.2.2</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>org.slf4j</groupId>  
+            <artifactId>slf4j-api</artifactId>  
+            <version>${slf4j.version}</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.slf4j</groupId>  
+            <artifactId>slf4j-log4j12</artifactId>  
+            <version>${slf4j.version}</version>  
+        </dependency>  
+        <!-- log end -->  
+        <!-- 映入JSON -->  
+        <dependency>  
+            <groupId>org.codehaus.jackson</groupId>  
+            <artifactId>jackson-mapper-asl</artifactId>  
+            <version>1.9.13</version>  
+        </dependency>  
 	</dependencies>
 
 	<build>

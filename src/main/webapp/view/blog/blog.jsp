@@ -14,6 +14,14 @@
     	</style>
     
 </head>
+<script type="text/javascript" src="${ctx}/static/js/jquery-1.8.3.js"></script>
+<script>
+	$(function(){
+		sessionStorage.setItem("myName", "wwkk");
+		alert("wwkk");
+	})
+	
+</script>
 <body>
     
     <table class="table table-hover">

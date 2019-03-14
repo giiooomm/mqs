@@ -8,11 +8,15 @@
 <head>
     <title>完整demo</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+     <script type="text/javascript" charset="utf-8" src="${ctx}/static/js/jquery-1.8.3.js"></script>
+    <script type="text/javascript"  src="${ctx}/static/js/layer/layer.js"> </script>
     <script type="text/javascript" charset="utf-8" src="${ctx}/static/js/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="${ctx}/static/js/ueditor/ueditor.all.min.js"> </script>
+    
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <script type="text/javascript" charset="utf-8" src="${ctx}/static/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+    
      
     <style type="text/css">
         div{
@@ -25,6 +29,9 @@
 <script>
   function onld(){   
     //百度UEditor   
+	//layer.alert('见到你真的很高兴', {icon: 6});
+    alert("ss")
+    layer.alert('见到你真的很高兴', {icon: 6});
    var editor = UE.getEditor('editor');
 	
 	editor.addListener( 'ready', function(edt) {
@@ -188,11 +195,29 @@
         alert(arr.join("\n"));
     }
     function hasContent() {
-        var arr = [];
+        /* var arr = [];
         arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
         arr.push("判断结果为：");
         arr.push(UE.getEditor('editor').hasContents());
-        alert(arr.join("\n"));
+        alert(arr.join("\n")); */
+    	$.ajax({
+            url: '${ctx}/blog/toUpdate',
+            type: 'POST',
+            data: {id:1},
+            dataType : "html",
+            success: function (result) {
+            	debugger;
+                layer.open({
+                    type: 1,
+                    anim: 0,
+                    title: "查看二维码",
+                    area: ['35%', '70%'],
+                    btn: ['关闭'],
+                    content: result
+                });
+            }
+        });
+
     }
     function setFocus() {
         UE.getEditor('editor').focus();

@@ -25,7 +25,6 @@
 </head>
 <script>
   function onld(){   
-    //百度UEditor   
    var editor = UE.getEditor('editor');
 	
 	editor.addListener( 'ready', function(edt) {
